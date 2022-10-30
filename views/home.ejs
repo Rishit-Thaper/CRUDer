@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title><%= title %></title>
+</head>
+<body> 
+<%- include('./partials/nav.ejs')%> 
+                <div class="table">
+                    <% if (Users !=''){ %>
+                        <table class="table table-stripped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% Users.forEach((row,index) => { %>
+                                    <tr>
+                                        <td><%= index+1 %> </td>
+                                        <td><%= row.Name %> </td>
+                                        <td><%= row.Email %></td>
+                                        <td><%= row.Phone %></td>
+                                        <td><img src="<%= row.Image %>" class="img-thumbnail" width="50" alt=""></td>
+                                        <td><a href="/edit/<%= row._id %> " class="text-success"><i class="fas fa-edit fa-lg mx-1"></i></a><a href="/delete/<%= row._id %>" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    <% }else {  %>
+                            <h1>No user found</h1>
+                    <% } %>
+                </div>
+</body>
+</html>
